@@ -1,0 +1,13 @@
+.cell {
+  display: flex;
+  justify-content: space-between;
+  
+  .date-hour-separator, .radio-input {
+    margin-top: 7px;
+  }
+}
+
+#hours {
+  margin-left: 85px;
+  margin-top: 7px;
+}

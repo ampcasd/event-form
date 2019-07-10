@@ -1,0 +1,39 @@
+<ng-container *ngIf="!displaySuccessMessage && (formService.eventForm$ | async) as eventForm">
+  <form 
+    [formGroup]="eventForm.formGroup"
+    (submit)="submit()">
+
+    <app-section-container [header]="'About'">
+      <app-form-section-about
+        [form]="eventForm.formGroup"
+        [submitted]="formSubmitted"
+      ></app-form-section-about>
+    </app-section-container>
+
+    <app-section-container [header]="'Coordinator'">
+      <app-form-section-coordinator
+        [form]="eventForm.formGroup"  
+        [submitted]="formSubmitted"
+      ></app-form-section-coordinator>
+    </app-section-container>
+
+    <app-section-container [header]="'When'">
+      <app-form-section-when
+        [form]="eventForm.formGroup"
+        [submitted]="formSubmitted"
+      ></app-form-section-when>
+    </app-section-container>
+
+    <button>publish event</button>
+  </form>
+</ng-container>
+
+<app-section-container 
+  *ngIf="displaySuccessMessage"
+  [header]="'Success'"
+  [headerType]="headerTypes.success"
+>
+  <div class="success-message">
+    Event has been created.
+  </div>
+</app-section-container>

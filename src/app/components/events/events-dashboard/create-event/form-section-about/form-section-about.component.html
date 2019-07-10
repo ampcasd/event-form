@@ -1,0 +1,116 @@
+<div class="section-container">
+    <form [formGroup]="form" [class.submitted]="submitted">
+
+    <div formGroupName="about">
+
+      <div class="form-row">
+        <label for="title" 
+          [class.ng-invalid]="hasError('about', 'title')"
+        >Title<span class="asterisk"> *</span>
+        </label>
+        <input 
+          name="title" 
+          placeholder="Make it short and clear"
+          formControlName="title" 
+          required
+          class="wide" 
+        />
+        <div class="validation-error" *ngIf="hasError('about', 'title')">
+          Title cannot be empty
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="description"
+          [class.ng-invalid]="hasError('about', 'description')"      
+        >Description<span class="asterisk"> *</span>
+      </label>
+        <div class="annotated-input">
+          <textarea 
+            name="description"
+            placeholder="Write about your event, be creative"
+            formControlName="description" 
+            maxlength="140"
+            required
+            class="wide" 
+            aria-describedBy="description-annotation"
+          ></textarea>
+          <div id="description-annotation" class="input-annotation textarea">
+            Max length 140 character <span>{{descriptionLength}}/140</span>
+          </div>
+        </div>
+        <div class="validation-error" *ngIf="hasError('about', 'description')">
+          Description cannot be empty
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="category"
+        >Category
+        </label>
+        <div class="annotated-input">
+          <select 
+            name="category" 
+            formControlName="categoryId"
+            aria-describedBy="category-annotation"
+            class="wide"
+          >
+            <option [ngValue]="null">Select category (skills, interests, locations)</option>
+            <option 
+              *ngFor="let category of (categories$ | async)" 
+              [ngValue]="category"
+              >
+              {{ category.name }}
+            </option>
+          </select>
+          <div id="category-annotation" class="input-annotation">
+            Describes topic and people who should be interested in this event
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="payment" 
+          [class.ng-invalid]="hasError('about', 'eventFee')"
+        >Payment
+        </label>
+
+        <div class="radio-input">        
+          <input type="radio" formControlName="paidEvent" value="" [checked]="true">
+          <span class="side-note">Free event</span>
+        </div>
+
+        <div class="radio-input margin-left">
+          <input type="radio" formControlName="paidEvent" value="true">
+          <span class="side-note">Paid event</span>
+        </div>
+
+        <div *ngIf="paidEvent.value" id="fee">
+          <input 
+            placeholder="Fee"
+            formControlName="eventFee" 
+            [required]="paidEvent.value"
+            class="narrow"
+          />
+          <span class="side-note">$</span>
+        </div>
+        <div class="validation-error" *ngIf="hasError('about', 'eventFee')">
+          Fee cannot be empty
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <label for="reward" 
+        >Reward
+        </label>
+        <input 
+          name="reward" 
+          placeholder="Number"
+          formControlName="reward"
+          class="narrow" 
+        /> 
+        <span class="side-note" id="reward-note">reward points for attendance</span>
+      </div>
+    </div>
+  </form>
+</div>

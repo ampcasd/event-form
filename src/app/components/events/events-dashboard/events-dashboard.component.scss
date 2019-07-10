@@ -1,0 +1,18 @@
+@import '../../../../mixins.scss';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+  .message {
+    text-align: center;
+  }
+  p {
+    margin-top: 200px;
+  }
+}
+
+button {
+  @include confirmButton;
+}

@@ -1,0 +1,52 @@
+@import './colors.scss';
+@import './sizes.scss';
+
+@mixin confirmButton {
+  color: $button-confirm-font;
+  background-color: $button-confirm-background;
+  
+  @include standardButton;
+}
+
+@mixin standardButton {
+  height: $standard-button-height;
+  width: $standard-button-width;
+
+  border: none;
+  border-radius: 2px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+@mixin standardHeader {
+  font-size: 27px;
+  color: $font-primary;
+  text-align: left;
+}
+
+@mixin input($width, $height: $input-height) {
+  width: 100%;
+  max-width: $width;
+  height: $height;
+  
+  padding: 10px; 
+
+  border: 1px solid $border-grey;
+  box-sizing: border-box;
+  border-radius: 1px;
+
+  &::placeholder {
+    color: $font-placeholder;
+  }
+
+  &.ng-dirty {
+    color: $font-dark;
+  }
+  
+  form.submitted &.ng-invalid, &.ng-invalid.ng-dirty {
+    color: $warning-red;
+    border-color: $warning-red;
+  }
+}

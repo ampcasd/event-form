@@ -1,0 +1,26 @@
+@import '~../../../colors.scss';
+
+div {
+  display: grid;
+
+  width: 100%;
+
+  .top-border {
+    height: 15px;
+    background-color: $secondary;
+  }
+  
+  .main-bar {
+    height: 80px;
+    background-color: $primary;
+
+    .page-title {
+      margin: auto;
+      margin-left: 171px;
+
+      font-size: 33px;
+      font-weight: 200;
+      color: white;
+    }
+  }
+}

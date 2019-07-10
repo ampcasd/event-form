@@ -1,0 +1,17 @@
+@import '../../../../../mixins.scss';
+
+* {
+  margin-top: 25px;
+}
+
+form {
+  text-align: center;
+}
+
+button {
+  @include confirmButton
+}
+
+.success-message {
+  max-width: 800px; 
+}

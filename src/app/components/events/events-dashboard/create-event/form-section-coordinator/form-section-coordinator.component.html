@@ -1,0 +1,57 @@
+<div class="section-container">
+  <form [formGroup]="form" [class.submitted]="submitted">
+
+    <div formGroupName="coordinator">
+
+      <div class="form-row">
+        <label for="coordinator"
+          [class.ng-invalid]="hasError('coordinator', 'id')"      
+        >Responsible<span class="asterisk"> *</span></label>
+        <div class="annotated-input">
+          <select 
+            name="coordinator" 
+            formControlName="id"
+            aria-describedBy="coordinator-annotation"
+            (change)="onCoordinatorChange($event)"
+            class="wide"
+          >
+            <optgroup label="Me">
+              <option [ngValue]="loggedInUser.id">
+                Me - {{ loggedInUser.name }} {{ loggedInUser.lastname }}
+              </option>
+            </optgroup>
+            <optgroup label="Others">
+              <option 
+                *ngFor="let user of (users$ | async)"
+                [ngValue]="user.id"
+              >
+                {{ user.name + " " + user.lastname }}
+              </option>
+          </optgroup>
+          </select>
+        </div>
+        <div class="validation-error" *ngIf="hasError('coordinator', 'id')">
+          Coordinator field cannot be empty
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="email" 
+          [class.ng-invalid]="hasError('coordinator', 'email')"
+        >Email
+        </label>
+        <input 
+          name="email" 
+          type="email"
+          placeholder="Email"
+          formControlName="email"
+          class="wide" 
+        />
+        <div class="validation-error" *ngIf="hasError('coordinator', 'email')">
+          Please insert correct email
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

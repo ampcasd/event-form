@@ -1,0 +1,170 @@
+@import '../../../../colors.scss';
+@import '../../../../sizes.scss';
+@import '../../../../mixins.scss';
+
+.section-container {
+  text-align: left;  
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 115px minmax($input-width-narrow, $input-width-wide) 154px;
+  grid-template-areas: 'label input validation';
+
+  margin-top: $input-spacing;
+}
+
+label {
+  text-transform: uppercase;
+  color: $font-secondary;
+  min-width: 105px;
+  font-size: 14px;
+  margin-top: 7px;
+
+  grid-area: label;
+
+  &.ng-invalid {
+    color: $warning-red;
+  }
+}
+
+input {
+  &.wide {
+    @include input($input-width-wide)
+  }
+  &.medium {
+    @include input($input-width-medium)
+  }
+  &.narrow {
+    @include input($input-width-narrow)
+  }
+    
+  form.submitted &.ng-invalid, &.ng-invalid.ng-dirty {
+    color: $warning-red;
+    border-color: $warning-red;
+  }
+}
+
+select {
+  &.wide {
+    @include input($input-width-wide);
+    
+    color: $font-placeholder;
+    padding: 5px;
+  }
+  &.medium {
+    @include input($input-width-medium)
+  }
+  &.narrow {
+    @include input($input-width-narrow)
+  }
+  
+  &.ng-dirty {
+    color: $font-dark;
+  }
+  &.ng-invalid {
+    color: $warning-red;
+    border-color: $warning-red
+  }
+}
+
+textarea {
+  &.wide {
+    @include input($input-width-wide, $textarea-height)
+  }
+  &.medium {
+    @include input($input-width-medium, $textarea-height)
+  }
+  &.narrow {
+    @include input($input-width-narrow, $textarea-height)
+  }
+}
+
+input, textarea, select, .annotated-input, .radio-input, #fee {
+  grid-area: input;
+}
+
+.radio-input {
+  width: fit-content;
+  height: fit-content;
+  margin-top: 5px;
+}
+
+.validation-error {
+  position: relative;
+
+  width: 145px;
+
+  margin-top: 6px;
+  margin-left: 8px;
+  
+  font-size: 0.8rem;
+  color: white;
+  text-align: center;
+
+  border-radius: 2px;
+  background-color: $warning-red;
+  padding: 4px 0;
+
+  &::before {
+    position: absolute;
+    
+    width: 0px;
+    height: 0px;
+
+    right: 145px;
+    top: 7px;
+    
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #ffb2b2;
+    
+    content: "";
+  }
+}
+
+.input-annotation {
+  position: relative;
+  
+  margin: 2px 0;
+
+  font-size: 0.7rem;
+  font-weight: 200;
+  font-style: italic;
+  color: $font-placeholder;
+
+  &.textarea {
+    bottom: 4px;
+  }
+
+  span{
+    float: right;
+
+    color: inherit;
+  }
+}
+
+.side-note {
+  grid-area: input;
+}
+
+.asterisk {
+  color: $warning-red;
+}
+
+.margin-left {
+  margin-left: 100px;
+}
+
+#fee {
+  margin-left: 200px;
+
+  .side-note {
+    margin-left: 7px;
+  }
+}
+
+#reward-note {
+  margin-left: 85px;
+  margin-top: 6px;
+}

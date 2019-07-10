@@ -1,0 +1,67 @@
+<div class="section-container">
+  <form [formGroup]="form" [class.submitted]="submitted">
+
+    <div formGroupName="when">
+      
+      <div class="form-row">
+        <label for="day" 
+          [class.ng-invalid]="hasError('when', 'day')"
+        >
+        Starts on<span class="asterisk"> *</span>
+        </label>
+
+        <div class="cell">
+          <input 
+            name="day" 
+            type="date"
+            [value]="today | date:'yyyy-MM-dd'"
+            formControlName="day"
+            [min]="today | date:'yyyy-MM-dd'"
+            required
+            class="medium"
+          />
+
+          <span class="date-hour-separator">at</span>
+        
+          <input 
+            name="hour"
+            type="time" 
+            placeholder="--:--"
+            formControlName="time" 
+            required
+            class="narrow" 
+            (change)="onTimeChange($event)"
+          />
+          
+          <div class="radio-input">
+            <input type="radio" formControlName="meridian" value="am" [checked]="true">
+            <span class="side-note">AM</span>
+          </div>
+  
+          <div class="radio-input">
+            <input type="radio" formControlName="meridian" value="pm">
+            <span class="side-note">PM</span>
+          </div>
+          
+        </div>
+          <div class="validation-error" *ngIf="hasError('when', 'day') || hasError('when', 'time')">
+            Date cannot be empty
+          </div>
+      </div>
+
+      <div class="form-row">
+        <label for="duration">Duration</label>
+        <input 
+          name="duration"
+          min="0"
+          type="number"
+          placeholder="Number"
+          formControlName="duration"
+          class="narrow" 
+        />
+        <span class="side-note" id="hours">hours</span>
+      </div>
+
+    </div>
+  </form>
+</div>

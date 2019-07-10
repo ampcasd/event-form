@@ -1,0 +1,8 @@
+<div class="container">
+  <ng-container [ngSwitch]="headerType">
+    <app-simple-header [header]="header" *ngSwitchDefault></app-simple-header>
+    <app-success-header [header]="header" *ngSwitchCase="headerTypes.success"></app-success-header>
+  </ng-container>
+
+  <ng-content></ng-content>
+</div>

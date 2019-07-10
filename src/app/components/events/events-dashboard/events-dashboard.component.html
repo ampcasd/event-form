@@ -1,0 +1,21 @@
+<div class="container">
+
+  <app-create-event *ngIf="createMode; else eventsList"
+    (exitCreateMode)="createMode = false"
+  ></app-create-event>
+
+  <ng-template #eventsList>
+
+    <app-event-summary
+      *ngFor="let event of events | keyvalue"
+      [event]="event"
+    ></app-event-summary>
+    
+    <div class="message">
+      <p *ngIf="noEvents">No events to display.<br>Go ahead and add one.</p>
+      
+      <button (click)="createSocialEvent()">Add event</button>
+    </div>
+  </ng-template>
+
+</div>
